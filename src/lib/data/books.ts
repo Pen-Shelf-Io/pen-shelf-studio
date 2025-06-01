@@ -42,7 +42,7 @@ function bookRecord(
 }
 
 function bookCover(fileName: string): string {
-  return `images/book-covers/${fileName}`;
+  return `/images/book-covers/${fileName}`; // Added leading slash
 }
 
 export const allBooks: Book[] = [
@@ -234,7 +234,7 @@ export const allBooks: Book[] = [
     10.0,
     "Mythology",
     541,
-    "-800-01-01",
+    "-800-01-01", // Adjusted for historical date representation
     "9780140268867",
     "the-odyssey.jpg"
   ),
