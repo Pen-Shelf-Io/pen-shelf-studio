@@ -4,7 +4,8 @@ import Logo from './Logo';
 import SearchBar from '@/components/shared/SearchBar';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
-import CartIcon from './CartIcon'; // We'll create this component
+import CartIcon from './CartIcon';
+import { ThemeToggle } from './ThemeToggle';
 
 // Fallback component for SearchBar
 const SearchBarFallback = () => (
@@ -37,6 +38,7 @@ const Header = () => {
           <Suspense fallback={<CartIconFallback />}>
             <CartIcon />
           </Suspense>
+          <ThemeToggle />
         </nav>
       </div>
       <div className="md:hidden p-4 border-t border-border">
