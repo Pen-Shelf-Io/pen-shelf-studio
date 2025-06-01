@@ -1,6 +1,6 @@
-# 📚 PenChef – Book Catalogue
+# 📚 PenShelf – Book Catalogue
 
-**PenChef** is a minimalist e-commerce frontend built with **Next.js**. It was created to simulate a functional book store interface for the sole purpose of facilitating **Stripe account verification**. The project fetches books from internal API routes and offers a simple “buy” interaction, redirecting to a placeholder “Feature Coming Soon” page.
+**PenShelf** is a minimalist e-commerce frontend built with **Next.js**. It was created to simulate a functional book store interface for the sole purpose of facilitating **Stripe account verification**. The project fetches books from internal API routes and offers a simple “buy” interaction, redirecting to a placeholder “Feature Coming Soon” page.
 
 ---
 
@@ -47,3 +47,5 @@ Book data is defined in `books.ts` using a helper function like this:
   bookRecord("Book One", "Description", bookOneImage, bookOnePrice, bookOneCategory),
   bookRecord("Book Two", "Description", bookTwoImage, bookTwoPrice, bookTwoCategory),
 ]
+
+```

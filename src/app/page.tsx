@@ -31,10 +31,10 @@ export default async function HomePage() {
       {/* Hero Section - Featured Books */}
       <section className="text-center bg-card p-8 md:p-12 rounded-lg shadow-md">
         <h1 className="text-4xl md:text-5xl font-bold font-headline text-primary mb-4">
-          Welcome to PenChef
+          Welcome to PenShelf
         </h1>
         <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-          Discover your next favorite book from our curated collection on PenChef. Dive into worlds of adventure, knowledge, and imagination.
+          Discover your next favorite book from our curated collection on PenShelf. Dive into worlds of adventure, knowledge, and imagination.
         </p>
         {featuredBooks.length > 0 && (
           <>
