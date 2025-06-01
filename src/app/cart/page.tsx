@@ -100,7 +100,7 @@ export default function CartPage() {
               <Info className="h-4 w-4" />
               <AlertTitle>Note</AlertTitle>
               <AlertDescription>
-                Shipping and taxes will be calculated at checkout (this is a demo).
+                Shipping and taxes will be calculated at checkout.
               </AlertDescription>
             </Alert>
             <Link href="/checkout/coming-soon" passHref className="block">
