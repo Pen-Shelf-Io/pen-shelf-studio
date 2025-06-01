@@ -20,3 +20,7 @@ export interface PaginatedResponse<T> {
   totalItems: number;
   itemsPerPage: number;
 }
+
+export interface CartItem extends Book {
+  quantity: number;
+}
