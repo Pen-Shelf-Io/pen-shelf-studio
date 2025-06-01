@@ -5,8 +5,8 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 
 export const metadata: Metadata = {
-  title: 'PageTurner - Your Next Read Awaits',
-  description: 'Discover and explore a curated collection of books on PageTurner.',
+  title: 'PenChef - Your Next Read Awaits',
+  description: 'Discover and explore a curated collection of books on PenChef.',
 };
 
 export default function RootLayout({
