@@ -9,7 +9,6 @@ export interface Book {
   pages: number;
   publishedDate: string; // YYYY-MM-DD
   isbn: string;
-  featured?: boolean;
   aiHint?: string; // For placeholder image search
 }
 
