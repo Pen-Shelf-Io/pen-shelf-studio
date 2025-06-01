@@ -70,21 +70,3 @@ const CategoryChips = () => {
 };
 
 export default CategoryChips;
-
-// CSS to hide scrollbar for a cleaner look on category chips
-const style = \`
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  .no-scrollbar {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-  }
-\`;
-
-if (typeof window !== 'undefined') {
-  const head = document.head || document.getElementsByTagName('head')[0];
-  const styleElement = document.createElement('style');
-  head.appendChild(styleElement);
-  styleElement.appendChild(document.createTextNode(style));
-}

@@ -107,3 +107,12 @@ body {
 .card-animated:hover {
   @apply shadow-xl transform -translate-y-1;
 }
+
+/* Scrollbar hiding utilities */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
