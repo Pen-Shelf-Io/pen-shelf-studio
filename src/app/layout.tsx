@@ -7,8 +7,8 @@ import { CartProvider } from '@/contexts/CartContext';
 import { ThemeProvider } from 'next-themes';
 
 export const metadata: Metadata = {
-  title: 'GlobeLynk - Cause books are fun',
-  description: 'Explore our amazing collection of fun books',
+  title: 'PenShelf - Your Next Read Awaits',
+  description: 'Discover and explore a curated collection of books on PenShelf.',
 };
 
 export default function RootLayout({
