@@ -23,19 +23,19 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     try {
-      const storedCart = localStorage.getItem('penshelf-cart');
+      const storedCart = localStorage.getItem('globelynk-cart');
       if (storedCart) {
         setCartItems(JSON.parse(storedCart));
       }
     } catch (error) {
       console.error("Failed to load cart from localStorage", error);
-      localStorage.removeItem('penshelf-cart'); // Clear corrupted cart
+      localStorage.removeItem('globelynk-cart'); // Clear corrupted cart
     }
   }, []);
 
   useEffect(() => {
     try {
-      localStorage.setItem('penshelf-cart', JSON.stringify(cartItems));
+      localStorage.setItem('globelynk-cart', JSON.stringify(cartItems));
     } catch (error) {
       console.error("Failed to save cart to localStorage", error);
     }

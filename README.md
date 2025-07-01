@@ -1,6 +1,6 @@
-# 📚 PenShelf – Book Catalogue
+# 📚 ~PenShelf~ GlobeLynk – Book Catalogue
 
-**PenShelf** is a minimalist e-commerce frontend built with **Next.js**. It was created to simulate a functional book store interface for the sole purpose of facilitating **Stripe account verification**. The project fetches books from internal API routes and offers a simple “buy” interaction, redirecting to a placeholder “Feature Coming Soon” page.
+**GlobeLynk (PenShelf)** is a minimalist e-commerce frontend built with **Next.js**. It was created to simulate a functional book store interface for the sole purpose of facilitating **Stripe account verification**. The project fetches books from internal API routes and offers a simple “buy” interaction, redirecting to a placeholder “Feature Coming Soon” page.
 
 ---
 
