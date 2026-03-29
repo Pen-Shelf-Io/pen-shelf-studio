@@ -34,7 +34,7 @@ export default async function HomePage() {
           Welcome to GlobeLynk
         </h1>
         <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-          Discover your next favorite book from our curated collection on GlobeLynk. Dive into worlds of adventure, knowledge, and imagination.
+          Discover your next favorite book from our curated collection on GlobeLynk. Dive into realms of adventure, knowledge, and imagination.
         </p>
         {featuredBooks.length > 0 && (
           <>
