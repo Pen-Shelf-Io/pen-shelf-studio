@@ -87,7 +87,7 @@ export const allBooks: Book[] = [
     "Jane Austen",
     "A witty romance novel exploring societal norms in 19th-century England.",
     "romance classic",
-    8.75,
+    6.05,
     "Romance",
     279,
     "1813-01-28",

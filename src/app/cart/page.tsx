@@ -103,7 +103,7 @@ export default function CartPage() {
                 Shipping and taxes will be calculated at checkout.
               </AlertDescription>
             </Alert>
-            <Link href="/checkout/coming-soon" passHref className="block">
+            <Link href="/checkout" passHref className="block">
               <Button size="lg" className="w-full bg-accent text-accent-foreground hover:bg-accent/90 btn-animated text-lg">
                 Proceed to Checkout
               </Button>
