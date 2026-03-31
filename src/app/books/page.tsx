@@ -6,6 +6,9 @@ import type { Book, PaginatedResponse } from '@/lib/types';
 import { BOOKS_PER_PAGE } from '@/lib/constants';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { BookIcon } from 'lucide-react';
+import { Suspense } from 'react';
+
+export const dynamic = 'force-dynamic';
 
 interface BooksPageProps {
   searchParams: {
@@ -41,9 +44,10 @@ async function getBooks(
 
 
 export default async function BooksPage({ searchParams }: BooksPageProps) {
-  const currentPage = parseInt(searchParams.page || '1', 10);
-  const currentCategory = searchParams.category;
-  const limit = parseInt(searchParams.limit || String(BOOKS_PER_PAGE), 10);
+  const params = await searchParams;
+  const currentPage = parseInt(params.page || '1', 10);
+  const currentCategory = params.category;
+  const limit = parseInt(params.limit || String(BOOKS_PER_PAGE), 10);
 
   const { data: books, totalPages, totalItems, itemsPerPage } = await getBooks(currentPage, currentCategory, limit);
 
@@ -54,7 +58,9 @@ export default async function BooksPage({ searchParams }: BooksPageProps) {
   return (
     <div className="space-y-8">
       <PageTitle>{pageTitle}</PageTitle>
-      <CategoryChips />
+      <Suspense fallback={<div className="h-10 mb-8" />}>
+        <CategoryChips />
+      </Suspense>
 
       {books.length > 0 ? (
         <>
@@ -63,12 +69,14 @@ export default async function BooksPage({ searchParams }: BooksPageProps) {
               <BookCard key={book.id} book={book} />
             ))}
           </div>
-          <PaginationControls
-            currentPage={currentPage}
-            totalPages={totalPages}
-            totalItems={totalItems}
-            itemsPerPage={itemsPerPage}
-          />
+          <Suspense fallback={<div className="mt-12" />}>
+            <PaginationControls
+              currentPage={currentPage}
+              totalPages={totalPages}
+              totalItems={totalItems}
+              itemsPerPage={itemsPerPage}
+            />
+          </Suspense>
         </>
       ) : (
         <Alert>
