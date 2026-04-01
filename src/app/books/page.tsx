@@ -7,6 +7,7 @@ import { BOOKS_PER_PAGE } from '@/lib/constants';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { BookIcon } from 'lucide-react';
 import { Suspense } from 'react';
+import { getBaseUrl } from '@/lib/utils';
 
 export const dynamic = 'force-dynamic';
 
@@ -23,9 +24,9 @@ async function getBooks(
   category?: string,
   limit: number = BOOKS_PER_PAGE
 ): Promise<PaginatedResponse<Book>> {
-  let url = `${process.env.NEXT_PUBLIC_APP_URL}/api/books?page=${page}&limit=${limit}`;
+  let url = `${getBaseUrl()}/api/books?page=${page}&limit=${limit}`;
   if (category && category.toLowerCase() !== 'all') {
-    url = `${process.env.NEXT_PUBLIC_APP_URL}/api/books/category/${encodeURIComponent(category)}?page=${page}&limit=${limit}`;
+    url = `${getBaseUrl()}/api/books/category/${encodeURIComponent(category)}?page=${page}&limit=${limit}`;
   }
   
   try {

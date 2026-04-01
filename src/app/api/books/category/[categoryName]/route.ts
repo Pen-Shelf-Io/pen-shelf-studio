@@ -5,9 +5,10 @@ import type { Book, PaginatedResponse } from '@/lib/types';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { categoryName: string } }
+  { params }: { params: Promise<{ categoryName: string }> }
 ) {
-  const categoryName = decodeURIComponent(params.categoryName);
+  const resolvedParams = await params;
+  const categoryName = decodeURIComponent(resolvedParams.categoryName);
   const { searchParams } = new URL(request.url);
   const page = parseInt(searchParams.get('page') || '1', 10);
   const limit = parseInt(searchParams.get('limit') || String(BOOKS_PER_PAGE), 10);

@@ -6,18 +6,19 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import type { Book } from '@/lib/types';
 import { RANDOM_BOOKS_COUNT_HOME, FEATURED_BOOKS_COUNT_HOME } from '@/lib/constants';
+import { getBaseUrl } from '@/lib/utils';
 
 async function getFeaturedBooks(): Promise<Book[]> {
   // In a real app, this would fetch from /api/books/featured or similar
   // For now, fetch from /api/books/random with a specific count for featured.
   // Or, filter from allBooks directly for simplicity in this example.
-  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/books/random?count=${FEATURED_BOOKS_COUNT_HOME}`, { cache: 'no-store' });
+  const res = await fetch(`${getBaseUrl()}/api/books/random?count=${FEATURED_BOOKS_COUNT_HOME}`, { cache: 'no-store' });
   if (!res.ok) return [];
   return res.json();
 }
 
 async function getRandomBooks(): Promise<Book[]> {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/books/random?count=${RANDOM_BOOKS_COUNT_HOME}`, { cache: 'no-store' });
+  const res = await fetch(`${getBaseUrl()}/api/books/random?count=${RANDOM_BOOKS_COUNT_HOME}`, { cache: 'no-store' });
   if (!res.ok) return [];
   return res.json();
 }

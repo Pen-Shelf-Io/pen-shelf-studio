@@ -12,6 +12,7 @@ import { Separator } from '@/components/ui/separator';
 import { useCart } from '@/contexts/CartContext';
 import { useEffect, useState } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
+import { getBaseUrl } from '@/lib/utils';
 
 // Fetching logic remains a server-side concern if we keep initial load as server component,
 // but since we need useCart, the whole page becomes client component.
@@ -21,7 +22,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 async function getBook(bookId: string): Promise<Book | null> {
   try {
     // Ensure NEXT_PUBLIC_APP_URL is set in your .env file
-    const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/books/${bookId}`, { cache: 'no-store' });
+    const res = await fetch(`${getBaseUrl()}/api/books/${bookId}`, { cache: 'no-store' });
     if (!res.ok) {
       console.error("Failed to fetch book, status:", res.status);
       return null;

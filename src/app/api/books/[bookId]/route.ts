@@ -4,9 +4,10 @@ import type { Book } from '@/lib/types';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { bookId: string } }
+  { params }: { params: Promise<{ bookId: string }> }
 ) {
-  const bookId = params.bookId;
+  const resolvedParams = await params;
+  const bookId = resolvedParams.bookId;
   const book = getBookById(bookId);
 
   if (!book) {

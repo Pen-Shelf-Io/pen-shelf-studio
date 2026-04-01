@@ -5,6 +5,7 @@ import type { Book, PaginatedResponse } from '@/lib/types';
 import { BOOKS_PER_PAGE } from '@/lib/constants';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { SearchX } from 'lucide-react';
+import { getBaseUrl } from '@/lib/utils';
 
 interface SearchPageProps {
   searchParams: {
@@ -19,7 +20,7 @@ async function searchBooks(
   page: number,
   limit: number = BOOKS_PER_PAGE
 ): Promise<PaginatedResponse<Book>> {
-  const url = `${process.env.NEXT_PUBLIC_APP_URL}/api/books/search?q=${encodeURIComponent(query)}&page=${page}&limit=${limit}`;
+  const url = `${getBaseUrl()}/api/books/search?q=${encodeURIComponent(query)}&page=${page}&limit=${limit}`;
   try {
     const res = await fetch(url, { cache: 'no-store' });
      if (!res.ok) {
