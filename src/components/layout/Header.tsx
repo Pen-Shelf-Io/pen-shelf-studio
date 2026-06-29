@@ -30,6 +30,11 @@ const Header = () => {
               <SearchBar />
             </Suspense>
           </div>
+          <Link href="/travel" passHref>
+            <Button variant="ghost" className="text-foreground hover:bg-accent hover:text-accent-foreground px-2 sm:px-3">
+              Travel
+            </Button>
+          </Link>
           <Link href="/books" passHref>
             <Button variant="ghost" className="text-foreground hover:bg-accent hover:text-accent-foreground px-2 sm:px-3">
               All Books

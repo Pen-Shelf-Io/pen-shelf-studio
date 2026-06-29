@@ -23,3 +23,26 @@ export interface PaginatedResponse<T> {
 export interface CartItem extends Book {
   quantity: number;
 }
+
+export interface Flight {
+  id: string;
+  airline: string;
+  airlineLogo: string;
+  departureTime: string; // ISO String
+  arrivalTime: string;   // ISO String
+  departureCity: string;
+  arrivalCity: string;
+  duration: string;
+  price: number;
+}
+
+export interface Hotel {
+  id: string;
+  name: string;
+  location: string;
+  rating: number;
+  reviews: number;
+  pricePerNight: number;
+  image: string;
+  amenities: string[];
+}

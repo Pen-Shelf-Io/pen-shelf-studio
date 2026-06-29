@@ -1,38 +1,43 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
-import CheckoutForm from '@/components/checkout/CheckoutForm';
-import { useCart } from '@/contexts/CartContext';
+import TravelCheckoutForm from '@/components/travel/TravelCheckoutForm';
 import PageTitle from '@/components/shared/PageTitle';
 import { Loader2 } from 'lucide-react';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+import { useSearchParams } from 'next/navigation';
 
-// Explicitly calling Stripe from client side context safely
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string);
 
-export default function CheckoutPage() {
+function CheckoutContent() {
+  const searchParams = useSearchParams();
+  const type = searchParams.get('type');
+  const id = searchParams.get('id');
+  const duration = searchParams.get('duration');
+
   const [clientSecret, setClientSecret] = useState('');
   const [error, setError] = useState<string | null>(null);
-  const { cartItems } = useCart();
+  const [price, setPrice] = useState(0);
+  const [itemName, setItemName] = useState('');
   const isFetching = React.useRef(false);
 
   useEffect(() => {
-    if (cartItems.length > 0) {
+    if (type && id) {
       if (isFetching.current) return;
       isFetching.current = true;
       
-      fetch('/api/checkout', {
+      fetch('/api/checkout/travel', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ items: cartItems }),
+        body: JSON.stringify({ type, id, ...(duration ? { duration } : {}) }),
       })
         .then((res) => res.json())
         .then((data) => {
           if (data.clientSecret) {
             setClientSecret(data.clientSecret);
+            setPrice(data.price || 0);
+            setItemName(data.itemName || '');
           } else {
             console.error('Failed to get client secret', data);
             setError(data.error || 'Failed to initialize payment intent');
@@ -42,19 +47,10 @@ export default function CheckoutPage() {
           console.error(err);
           setError('Network error: unable to reach checkout service');
         });
+    } else {
+      setError('Invalid booking details.');
     }
-  }, [cartItems]);
-
-  if (cartItems.length === 0) {
-    return (
-      <div className="text-center py-20 space-y-4">
-        <PageTitle>Oops! Your Cart is Empty</PageTitle>
-        <Link href="/books">
-          <Button size="lg" className="mt-4 btn-animated">Return to Shop</Button>
-        </Link>
-      </div>
-    );
-  }
+  }, [type, id]);
 
   const appearance = {
     theme: 'stripe' as const,
@@ -66,9 +62,9 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto py-8">
+    <div className="max-w-6xl mx-auto py-8 px-4">
       <div className="mb-8">
-         <PageTitle>Secure Checkout</PageTitle>
+         <PageTitle>Secure Booking Checkout</PageTitle>
       </div>
       
       {error && (
@@ -80,7 +76,7 @@ export default function CheckoutPage() {
 
       {clientSecret && !error ? (
         <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm />
+          <TravelCheckoutForm price={price} itemName={itemName} />
         </Elements>
       ) : !error && (
         <div className="flex flex-col items-center justify-center p-20 text-muted-foreground">
@@ -89,5 +85,17 @@ export default function CheckoutPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function TravelCheckoutPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex justify-center items-center h-screen">
+        <Loader2 className="animate-spin h-10 w-10 text-primary" />
+      </div>
+    }>
+      <CheckoutContent />
+    </Suspense>
   );
 }
