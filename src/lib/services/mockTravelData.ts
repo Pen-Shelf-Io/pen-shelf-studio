@@ -10,7 +10,7 @@ export const MOCK_FLIGHTS: Flight[] = [
     departureCity: 'Tokyo (HND)',
     arrivalCity: 'Seoul (ICN)',
     duration: '2h 30m',
-    price: 3.50,
+    price: 1970,
   },
   {
     id: 'f-2',
